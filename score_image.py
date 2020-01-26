@@ -34,7 +34,7 @@ def saturation_calc(pixel):
     else:
         return 0
 
-def calculate_green_percentage(filename, tolerance=20):
+def calculate_percentage(filename, tolerance=20):
     background = np.array([255, 255, 255])
     X_rgb = []
     top_pixels_to_be_removed = 50
