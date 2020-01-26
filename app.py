@@ -6,26 +6,25 @@ from werkzeug.utils import secure_filename
 import datetime
 import requests
 import os
+from score_image import calculate_percentage
 from analysis import *
 
 '''
 Here we define the download and the upload folder on the server
 '''
-UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + '/Audio_files/'
+UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + '/uploads/'
 DOWNLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + '/downloads/'
 
 # The allowed extensions that can be uploaded on the webpage
 ALLOWED_EXTENSIONS = {'jpeg', 'png', 'jpg'}
-
-# THIS IS A TEST FOR GITHUB
 
 app = Flask(__name__, static_url_path="/static")
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
-# limit upload size upto 100mb
-app.config['MAX_CONTENT_LENGTH'] = 10485750
+# limit upload size upto 20mb
+app.config['MAX_CONTENT_LENGTH'] = 20480
 
 
 # @app.route('/downloads/')
@@ -50,7 +49,8 @@ def index():
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                alpha = process_file(filename)
+                # Actual script is called to perform analysis
+                alpha = calculate_percentage(filename)
                 alpha_dict = json.loads(alpha)
                 return render_template('index.html', result=alpha, score=alpha_dict['score'])
                 # uploaded_file(filename=filename)
@@ -84,7 +84,6 @@ def allowed_file(filename):
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     # We are not really using the filename arg but ya
-    # filename = filename.split('.')[0] + ".csv"
     filename = "out.csv"
     return send_from_directory(app.config['DOWNLOAD_FOLDER'], filename, as_attachment=True)
 
