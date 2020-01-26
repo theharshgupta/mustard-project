@@ -3,16 +3,7 @@ import numpy as np
 import os
 from PIL import Image
 
-X_rgb = []
-top_pixels_to_be_removed = 50
-min_bottom_pixel = 480
-
-
-#filename is the image
-img = image.imread(filename)
-arr = np.array(img)
-X_rgb.append(arr[top_pixels_to_be_removed:min_bottom_pixel,:,:])
-#takes pixel rows between top_pixels_to_be_removed and min_bottom_pixel
+ixel
 #of pixels eliminates the part of the image that includes the tag for good or not and the number written on the page
 
 
@@ -21,7 +12,7 @@ def distance(pixel,background_pixel):
     #nonstandard distance formula
     return abs(sum(pixel-background_pixel))
 
-background = np.array([255,255,255])
+
 
 def hue_calc(pixel):
     #pixel is a list
@@ -43,7 +34,16 @@ def saturation_calc(pixel):
     else:
         return 0
 
-def calculate_green_percentage(arr, tolerance, background,n):
+def calculate_green_percentage(filename, tolerance=20):
+    background = np.array([255, 255, 255])
+    X_rgb = []
+    top_pixels_to_be_removed = 50
+    min_bottom_pixel = 480
+    # filename is the image
+    img = image.imread(filename)
+    arr = np.array(img)
+    X_rgb.append(arr[top_pixels_to_be_removed:min_bottom_pixel, :, :])
+    # takes pixel rows between top_pixels_to_be_removed and min_bottom_p
     n_of_relevant_pixels = 0
     height, width = arr.shape[0], arr.shape[1]
     total_pixels = height*width
