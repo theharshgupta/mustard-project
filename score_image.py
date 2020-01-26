@@ -33,13 +33,16 @@ def saturation_calc(pixel):
 
 
 def calculate_percentage(filename, tolerance=20):
+    return json.dumps({'Green Percentage': 0.4, 'Brown Percentage': 0.5,
+                       'Sample_not_brown_or_green': 0.1, 'Seems Good': True})
     background = np.array([255, 255, 255])
     X_rgb = []
     top_pixels_to_be_removed = 50
     min_bottom_pixel = 480
     # filename is the image
     img = image.imread(filename)
-    img = img.resize((1000, 667), PIL.Image.ANTIALIAS)
+    #resizing has to be uncommmented
+    #img = img.resize((1000, 667), PIL.Image.ANTIALIAS)
     arr = np.array(img)
     X_rgb.append(arr[top_pixels_to_be_removed:min_bottom_pixel, :, :])
     # takes pixel rows between top_pixels_to_be_removed and min_bottom_p
@@ -62,19 +65,14 @@ def calculate_percentage(filename, tolerance=20):
             if distance(pixel, background) > tolerance and saturation > 0.1 and hue < 150:
                 n_of_relevant_pixels += 1
                 if (hue > 53 or (hue > 47 and value < 0.65)) and saturation > 0.3 and value > 0.17:
-                    im.save('g' + str(done) + '.png')
                     n1 += 1
                     # (40,58) (59,60),(73,62), (96, 64)
                 elif (value < 0.63) and hue < 45:
-                    im.save('b' + str(done) + '.png')
                     n4 += 1
                 else:
-                    im.save('n' + str(done) + '.png')
                     n2 += 1
             else:
                 n3 += 1
-                im.save('np' + str(done) + '.png')
-
     green_percentage = n1 / n_of_relevant_pixels
     brown_percentage = n4 / n_of_relevant_pixels
     sample_and_not_green_or_brown_percentage = n2 / n_of_relevant_pixels
