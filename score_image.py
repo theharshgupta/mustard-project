@@ -79,7 +79,7 @@ def calculate_percentage(filename, tolerance=20):
     return n_of_relevant_pixels,n1,n2,n3,n4
 
 
-n_of_relevant_pixels,n1,n2,n3,n4 = calculate_green_percentage(X_rgb[0],20,background,i+1)
+
 
 green_percentage = n1/n_of_relevant_pixels
 brown_percentage = n4/n_of_relevant_pixels

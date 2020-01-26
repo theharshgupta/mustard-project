@@ -19,7 +19,13 @@ def process_file(path):
     # IBM Watson tone analyzer takes in the clauses
     tone_dict = tone_analyzer(clauses)
     score_1 = score(dpeffects,tone_dict)
-    return json.dumps({'audio': dpeffects, 'text': tone_dict, 'score': score_1})
+
+    n_of_relevant_pixels, n1, n2, n3, n4 = calculate_percentage(filename)
+    green_percentage = n1 / n_of_relevant_pixels
+    brown_percentage = n4 / n_of_relevant_pixels
+    sample_and_not_green_or_brown_percentage = n2 / n_of_relevant_pixels
+    Acceptable = n3 / n_of_relevant_pixels < 0.5
+    return json.dumps({'Green Percentage': green_percentage, 'Brown Percentage': brown_percentage, 'Sample_not_brown_or_green': sample_and_not_green_or_brown_percentage, 'Seems Good': Acceptable})
     # save_score_data()
     # get_clause_emotions(path=path)
     # the function above returns the clause/emotion dictionary which can be used to display the scripts.
