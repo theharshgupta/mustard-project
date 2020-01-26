@@ -24,7 +24,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
 # limit upload size upto 20mb
-app.config['MAX_CONTENT_LENGTH'] = 20480
+app.config['MAX_CONTENT_LENGTH'] = 20480000
 
 
 # @app.route('/downloads/')
@@ -50,9 +50,9 @@ def index():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 # Actual script is called to perform analysis
-                alpha = calculate_percentage(filename)
+                alpha = calculate_percentage(UPLOAD_FOLDER + filename)
                 alpha_dict = json.loads(alpha)
-                return render_template('index.html', result=alpha, score=alpha_dict['score'])
+                return render_template('index.html', result=alpha_dict)
                 # uploaded_file(filename=filename)
         return render_template('index.html', result="")
     return render_template('index.html', result="")

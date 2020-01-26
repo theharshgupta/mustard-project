@@ -16,11 +16,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        var res = null;
-        res = {{ result | tojson }};
-        var score = {{ score }}
-    </script>
 
     <script src="{{ url_for('static', filename='js/displayAnalysis.js') }}"></script>
 
@@ -67,15 +62,6 @@
             </div>
         </div>
         <div class="row" style="margin-top: 1rem;">
-            <div class="col-md-6" style="font-size: 14px;">
-                <div class="card" style="min-height: 26rem;">
-                    <h4 class="card-header" style="text-align: center; font-family:'Century Gothic Pro',serif;">Textual
-                        Sentiment Analysis</h4>
-                    <div class="card-body">
-                        <p class="card-text" id="textAnalysis"></p>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-6" style="font-size: 14px;">
                 <div class="card" style="min-height: 26rem;">
                     <h4 class="card-header" style="text-align: center; font-family:'Century Gothic Pro',serif;">Audio
