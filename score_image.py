@@ -39,6 +39,7 @@ def calculate_percentage(filename, tolerance=20):
     min_bottom_pixel = 480
     # filename is the image
     img = image.imread(filename)
+    img = img.resize((1000, 667), PIL.Image.ANTIALIAS)
     arr = np.array(img)
     X_rgb.append(arr[top_pixels_to_be_removed:min_bottom_pixel, :, :])
     # takes pixel rows between top_pixels_to_be_removed and min_bottom_p
