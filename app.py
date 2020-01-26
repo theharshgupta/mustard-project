@@ -5,7 +5,7 @@ from flask import Flask, request, redirect, url_for, render_template, send_from_
 from werkzeug.utils import secure_filename
 import datetime
 import requests
-from gcloud_api import *
+import os
 from analysis import *
 
 '''
@@ -15,7 +15,7 @@ UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + '/Audio_files/'
 DOWNLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + '/downloads/'
 
 # The allowed extensions that can be uploaded on the webpage
-ALLOWED_EXTENSIONS = {'flac', 'wav', 'mp3'}
+ALLOWED_EXTENSIONS = {'jpeg', 'png', 'jpg'}
 
 # THIS IS A TEST FOR GITHUB
 

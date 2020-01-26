@@ -5,8 +5,6 @@ import base64
 import requests
 import traceback
 
-from gcloud_api import gcloud_speech_to_text
-
 
 def process_file(path):
     """
