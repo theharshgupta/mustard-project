@@ -4,6 +4,7 @@ import os
 from PIL import Image
 import json
 
+
 def distance(pixel, background_pixel):
     # vals and standard have to be lists of lenth 3
     # nonstandard distance formula
@@ -33,15 +34,15 @@ def saturation_calc(pixel):
 
 
 def calculate_percentage(filename, tolerance=20):
-    return json.dumps({'Green Percentage': 0.5, 'Brown Percentage': 0.4,
-                       'Sample_not_brown_or_green': 0.1, 'Seems Good': True})
+    # return json.dumps({'Green Percentage': 0.5, 'Brown Percentage': 0.4,
+    #                    'Sample_not_brown_or_green': 0.1, 'Seems Good': True})
     background = np.array([255, 255, 255])
     X_rgb = []
     top_pixels_to_be_removed = 50
     min_bottom_pixel = 480
     # filename is the image
     img = image.imread(filename)
-    #img = img.resize((1000, 667), PIL.Image.ANTIALIAS)
+    # img = img.resize((1000, 667), PIL.Image.ANTIALIAS)
     arr = np.array(img)
     X_rgb.append(arr[top_pixels_to_be_removed:min_bottom_pixel, :, :])
     # takes pixel rows between top_pixels_to_be_removed and min_bottom_p
@@ -60,7 +61,7 @@ def calculate_percentage(filename, tolerance=20):
             r, g, b = pixel[0] * np.ones((2, 2)), pixel[1] * np.ones((2, 2)), pixel[2] * np.ones((2, 2))
             image_array = np.dstack((r, g, b)).astype(np.uint8)
             im = Image.fromarray(image_array)
-            print(100 * done / total, "percent done | ", done, [hue, saturation, value])
+            # print(100 * done / total, "percent done | ", done, [hue, saturation, value])
             if distance(pixel, background) > tolerance and saturation > 0.1 and hue < 150:
                 n_of_relevant_pixels += 1
                 if (hue > 53 or (hue > 47 and value < 0.65)) and saturation > 0.3 and value > 0.17:

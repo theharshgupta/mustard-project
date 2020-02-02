@@ -56,34 +56,33 @@
                 </form>
             </div>
         </div>
-        <div class="row">
+
+        <div class="row" style="margin-top: 2rem;">
             <div class="col-md-12" style="font-size: 14px;">
-                <h3 id="score" style="text-align:center; margin-top: 2rem; display:none"></h3>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 1rem;">
-            <div class="col-md-6" style="font-size: 14px;">
                 <div class="card" style="min-height: 26rem;">
-                    <h4 class="card-header" style="text-align: center; font-family:'Century Gothic Pro',serif;">Audio
-                        Emotion Analysis</h4>
+                    <h4 class="card-header" style="text-align: center; font-family:'Century Gothic Pro',serif;">Result</h4>
                     <div class="card-body">
                         <p class="card-text" id="audioAnalysis"></p>
+                        <h3>Green Percentage: {{ result['Green Percentage'] }}</h3>
+                        <h3>Brown Percentage: {{ result['Brown Percentage'] }}</h3>
+                        <h3>Not Brown or Green Percentage: {{ result['Sample_not_brown_or_green'] }}</h3>
+                        <h3>Seems good: {{ result['Seems Good'] }}</h3>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="container" style="position: fixed; bottom: 0;">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 style="text-align: center;">How it Works</h3>
-                    <small>
-
-                    </small>
-                    <br></br>
-                </div>
-            </div>
-        </div>
+{#        <div class="container" style="position: fixed; bottom: 0;">#}
+{#            <div class="row">#}
+{#                <div class="col-md-12">#}
+{#                    <h3 style="text-align: center;">How it Works</h3>#}
+{#                    <small>#}
+{##}
+{#                    </small>#}
+{#                    <br></br>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
     </div>
 </body>
 
