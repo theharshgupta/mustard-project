@@ -9,6 +9,7 @@ import os
 from score_image import calculate_percentage
 from analysis import *
 
+#Test commit from Harsh's mac
 '''
 Here we define the download and the upload folder on the server
 '''
