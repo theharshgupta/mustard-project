@@ -63,10 +63,15 @@
                     <h4 class="card-header" style="text-align: center; font-family:'Arial',serif;">Result</h4>
                     <div class="card-body">
                         <p class="card-text" id="audioAnalysis"></p>
-                        <h4>Green Percentage: {{ result['Green Percentage'] }}</h4>
-                        <h4>Brown Percentage: {{ result['Brown Percentage'] }}</h4>
-                        <h4>Not Brown or Green Percentage: {{ result['Sample_not_brown_or_green'] }}</h4>
-                        <h4>Seems good: {{ result['Seems Good'] }}</h4>
+                        {% if result != "" %}
+                            <h4>Green Percentage: {{ result['Green Percentage'] }}</h4>
+                            <h4>Brown Percentage: {{ result['Brown Percentage'] }}</h4>
+                            <h4>Not Brown or Green Percentage: {{ result['Sample_not_brown_or_green'] }}</h4>
+                            <h4>Seems good: {{ result['Seems Good'] }}</h4>
+                        {% else %}
+                            <h4> Upload an image first!</h4>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
